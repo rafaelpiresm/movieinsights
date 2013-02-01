@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<title>MovieInsights | InsideMoviews Here</title>
+	<script type="text/Javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script type="text/Javascript" >
+		/*$(document).ready(function() {
+			$("#search").click(function() {
+				var postdata = {'search' : $("#txtSearch").val(), 'type':$('input[name=search]:checked', document).val()};				
+				$.post('scripts/search/',postdata, function(data)
+						{ 
+							alert(data); 
+						});
+			});
+		})*/
+	</script>
+	
+	<style type="text/css">
+		textarea
+		{
+			padding: 0;
+			width: 100%;
+			height: 500px;
+		}
+		body 
+		{
+			width: 960px;
+			font-family: Overlock;
+			font-size:	1.2em;
+			margin: auto;
+			background-color: white;
+			color: gray;			
+		}		
+		h1 
+		{
+			text-align: center;
+			margin: auto;
+			background-color: black;
+		}
+		h2
+		{
+			text-align: center;
+			margin: auto;
+			padding: 1px;
+		}
+		h3
+		{
+			margin-bottom: 0;
+		}
+		#todo
+		{	
+			background-color: white;
+			border: 1px dotted gray;
+			min-height: 768px;
+		}
+		#header
+		{
+			width: 960px;
+			font-size: 0.8em;
+			font-weight: bolder;						
+			border-top: 1px dotted red;			
+		}
+		#content
+		{
+			border-top: 1px dotted gray;			
+			padding: 5px 3px;
+		}
+		.box
+		{
+			width: 380px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		
+		.l
+		{
+			float: left;
+		}
+		.r
+		{
+			float: right;
+		}
+		input
+		{	
+			margin-bottom: 5px;
+		}
+		.clear
+		{
+			clear: both;
+		}
+		#subjective_search
+		{	
+			border-right: 1px dotted gray;
+			
+			text-align: center;
+		}
+		.fullText
+		{
+			width: 270px;			
+		}
+		#objective_search
+		{	
+			border-left: 1px dotted gray;
+			
+			text-align: center;
+		}
+		.linknostyle
+		{
+			text-decoration: none;
+			color: white; 
+		}
+		.author
+		{
+			font-size: 0.8em;
+			font-style: italic;
+			font-weight: normal;
+			margin-bottom: 15px;
+		}		
+	</style>
+	
+</head>
+<body>
+	<div id="todo">	
+		<h1><a href="/" class="linknostyle">Movie Insights</a></h1>
+		<div id="header">
+			<div id="subjective_search" class="box l">
+				<h3>Full text script search</h3>
+				<input type="text" class='fullText' />
+				<input type="submit" value="Search" />
+			</div>
+		
+			<div id="objective_search" class="box r">				
+				<h3>Author/Title search</h3>
+							
+					<form action="/scripts/search/" method="post">
+							<label>
+								<input type="radio" value="title" name='type' checked="true">Title
+							</label>
+							<label>
+								<input type="radio" value="author" name='type'>Author
+							</label>
+						<input id="txtSearch" type="text" name="search"/>
+						<input type="submit" value="Search" />
+					</form> 
+								
+			</div>
+			<div class="clear"></div>			
+		</div>		
+		
+		 <div id="content">
+			{% if script %}				
+					<div id="header_script">
+						<h2>{{ script.title }}</h2>
+						<h2 class="author">{{ script.author }}</h2>
+					</div>
+					{% if script.content %}
+					<div id="content_script">
+						<textarea disabled="true">{{ script.content }}</textarea>
+					</div>
+					{% endif %}				
+			{% endif %}
+		</div>
+	</div>
+</body>
+</html>
